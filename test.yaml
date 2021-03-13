@@ -1,0 +1,20 @@
+config:
+  target: "https://service-foo.acmecorp.digital" # default target
+  phases:
+    - arrivalRate: 50
+      duration: 600
+  environments:
+    local-dev:
+      target: "http://localhost:5900/v2"
+      phases:
+        - arrivalRate: 10
+          duration: 60
+    preprod:
+      target: "https://service-foo.preprod.acmecorp.digital"
+scenarios:
+  - flow:
+      - post:
+          url: "/worker"
+          json:
+            username: "iamnasirudeen"
+            password: "iamnasirudeen"
