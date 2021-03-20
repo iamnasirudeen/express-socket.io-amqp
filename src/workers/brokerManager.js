@@ -27,7 +27,9 @@ class BrokerManager extends ManagerBase {
   }
 
   createProducerChannel() {
-    this.connectionInstance.createChannel((error, channel) => (this.producerChannel = channel));
+    this.publisherConnectionInstance.createChannel(
+      (error, channel) => (this.producerChannel = channel)
+    );
   }
 
   getProducerChannel() {
@@ -35,24 +37,25 @@ class BrokerManager extends ManagerBase {
   }
 
   setPublisherConnectionInstance(connectionInstance) {
-    this.connectionInstance = connectionInstance;
+    this.publisherConnectionInstance = connectionInstance;
   }
 
   getPublisherConnectionInstance() {
-    return this.connectionInstance;
+    return this.publisherConnectionInstance;
   }
 
   setConsumerConnectionInstance(connectionInstance) {
-    this.connectionInstance = connectionInstance;
+    this.consumerConnectionInstance = connectionInstance;
   }
 
   getConsumerConnectionInstance() {
-    return this.connectionInstance;
+    return this.consumerConnectionInstance;
   }
 
   initInstance(connectionInstance) {
     super.initInstance(connectionInstance);
-    this.connectionInstance = connectionInstance;
+    this.publisherConnectionInstance = connectionInstance;
+    this.consumerConnectionInstance = connectionInstance;
   }
 }
 
